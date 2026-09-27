@@ -1,5 +1,7 @@
 # CC Bot (Telegram Bot)
 
+**Developer Telegram:** [@tgekaiva](https://t.me/tgekaiva)
+
 A Telegram Bot for card verification and processing with Braintree sandbox flow, prepared for deployment on Render.
 
 ## Features

