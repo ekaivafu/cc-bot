@@ -214,6 +214,16 @@ def main() -> None:
         print("[ERROR] Please set the BOT_TOKEN environment variable in Render or update bot.py.")
         sys.exit(1)
 
+    # Ensure an active asyncio event loop in MainThread (required for Python 3.12+ and 3.14)
+    try:
+        loop = asyncio.get_event_loop()
+        if loop.is_closed():
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+
     # Start health check server in background thread for Render
     health_thread = threading.Thread(target=start_health_server, daemon=True)
     health_thread.start()
